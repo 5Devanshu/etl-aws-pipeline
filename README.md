@@ -2,6 +2,11 @@
 
 This project implements a robust and automated Extract, Transform, Load (ETL) pipeline designed to ingest, process, and analyze Spotify artist and track data. Leveraging serverless AWS components and Snowflake, this pipeline provides real-time insights into music listening patterns and trends.
 
+## Architecture Diagram
+Here's a visual representation of the ETL pipeline:
+
+![ETL Pipeline Diagram](https://www.plantuml.com/plantuml/png/TLJ1RkCs4BtpAmO9q2OeZ2ODkeSSYbMyKf72kt4iBT82Uw4bscOjaIf9nLMB0ls8Vc6_f8-aBMczwCdMpBp7cVU6V6iTDwvhQkQagmMbnOAMiXMrL8B-_ViVobljvAQdzvsL9RtZZbEYUDqxMLgwEaYte-TEbljSRdVkcZ6xbwhbXZTKwgRLIYYNknxCHfIEgsqj9YLsnojza6fB6rxRQSReJbMbDaeOklrkaaYCqOUvhhMXovkRDs_cSyQ-fgHqsbZ6_GzTvELEL5qjp2TrbRwYWmSZgwsulY1kANtmWFHt9mpce6Jvo8RM08tZ-Z30uQlj8p1VFXMFsIzqcTvctsTfEFObfmNlXM4jB_Ty2m8Vkig5UHMc5jR6D0Z-P3GgGXSutw1Rf9jrnN5KsxkTLlGD6V5R9wopL0Va9tMQfY81qfvkgP4gZlBpudFM_8vM_40FNRaN3gG67p_bJn_0fIelynyeF4vpjqfUFaSNXYkxqQQPT0KS7rifZDnkXK4hwnuCjFnO1B9YzMKZ0nkgXuRS90W_CQdxjhIlfvQA5VlBwvehVTZKV2_ErHqINmWw69exL4Q-8landLP5V8lrHYkySte6JQ0rROnko7fWx6Jvk3m3UbaBleQbW9xKj72cuH42DOl_aLDK8zHVjrd4KQChKTi8pv9vaP_rwepWZQMlWBPx3vQgDA914cF6pgLMH-sALPgypwDymmMTRdRISBW_kQmWVCVjRgsvgN3AY8gCppbTPbbsbzw0CbxyhDO7bZxGRFQ3tpswft4tNLmDXhZF3xVbdZBXoXrnuwHrECOPc4aL-8RQi8keV37I2JejBOjX5FZzGjhUtJ-jVyL4SmZZH7M_x1ppgSXHh0QAwPg5arX8eouk11Gg7VGcs4nWXmaR29HPBK1ps0BN9k2eCePZpXYEtqBmABRjWCGjXv4-EeAG84vSxxXdOAOwQw3eg7YV6jaQNmbeSnsBQ5pwZ2jRvwu-ng1fyyzvyq0wyIdljlB6aDyUdOKOVhR1qVCPyuEnv2Q794tcoaQx2AtFDXAh8CxF8NujDe2zMaJw-3wFUt6-apyHd1rVLEQ4m2umlQy7zttFEeMSlRS2URYc5Erf3uH1UwCCCX4AL_RZ-8zjR_EkQ-Zy0)
+
 ## Architecture Overview
 The pipeline consists of the following key components:
 1.  **Data Extraction:** An AWS Lambda function, triggered by EventBridge, extracts raw Spotify data using the Spotipy library and a `requests` layer.
@@ -10,7 +15,6 @@ The pipeline consists of the following key components:
 4.  **Transformed Data Storage:** Transformed data is stored in another S3 bucket, ready for loading into Snowflake.
 5.  **Data Loading & Warehousing:** Snowflake is used for data warehousing, with Snowpipe and external stages configured to automatically ingest data from S3.
 6.  **Analytics & Incremental Processing:** Star-schema models are designed within Snowflake, with streams and tasks enabling efficient incremental ingestion and analytics.
-
 ## Features:
 -   **Automated Spotify Data Ingestion:** Utilizes AWS Lambda and the Spotipy library to connect to the Spotify API and extract artist/track data.
 -   **Event-Driven Extraction:** An **Extract Lambda Function** (deployed with a `requests` layer for external API calls) is scheduled by AWS EventBridge to run every 1 minute, ensuring timely data collection.
